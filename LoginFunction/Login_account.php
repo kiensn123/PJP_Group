@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PJP_Login</title>
-    <link rel="stylesheet" href="Css/Login_account.Css">
+    <link rel="stylesheet" href="../Css/Login_account.Css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -13,7 +13,7 @@
 </head>
 <body>
     <div class="wrapper">
-        <form  method="POST" action="/Function/Login.php">
+        <form  method="POST" action="../Function/Login.php">
           <h1>Login</h1>
           <div class="input-box">
             <input type="email" name="email" placeholder="<?php
@@ -52,12 +52,12 @@
          
           <div class="remember-forgot">
             <label><input name="remember" type="checkbox"> Remember me</label>
-            <a href="#">Forgot password ?</a>
+            <a href="../Gmail/EnterGmail.php">Forgot password ?</a>
            
           </div>
           <button type="submit " class="btn">Log in</button>
           <div class="reguster-link">
-                <p>Don't have an account? <a href="/Register_account.php" >Register</a></p>
+                <p>Don't have an account? <a href="../LoginFunction/Register_account.php" >Register</a></p>
           </div>
         </form>
      </div>

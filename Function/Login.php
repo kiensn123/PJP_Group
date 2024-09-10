@@ -4,7 +4,7 @@ require_once("../Configuration/database.php");
 function ckeck($email){
     $sql = "SELECT * FROM users WHERE email = '$email' ";
     $result = query($sql);
-    $list = [];
+    $list = []; 
     while($row = $result->fetch_assoc()){
         $list[] = $row;
     }
@@ -12,11 +12,13 @@ function ckeck($email){
     return $list;
 }
 
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $email = $_POST['email'];
     $password = $_POST['password'];
 
+    
 
     $remember = isset($_POST['remember']) ? 'Yes' : 'No'; 
 
@@ -24,14 +26,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $userInfo = ckeck($email);
     if (!empty($userInfo)){
     
-        $hashedPassword = $userInfo[0]['password_hash']; 
-        if ($password === $hashedPassword){
-            echo "Mkdung";
+        $password_hash = $userInfo[0]['password_hash']; 
+        $id = $userInfo[0]['id']; 
+        if (password_verify($password, $password_hash)){
+            if ($remember === 'Yes'){
+                session_start() ; 
+                $_SESSION['Users_id'] = $id;
+            }
+            header("Location: ../index.php");
+            exit();
         }else{
-            header("Location: ../Login_account.php?error=password");
+          
+            header("Location: ../LoginFunction/Login_account.php?error=password");
+            exit();
         }
+
+
     }else{
-        header("Location: ../Login_account.php?error=email");
+        
+        header("Location: ../LoginFunction/Login_account.php?error=email");
+        exit();
     }
 
 
